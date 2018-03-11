@@ -1,0 +1,490 @@
+<modify-entry
+   name="sample.fxml"
+   present-props=""
+   has-prop-mods="false"
+   has-props="false"/>
+<modify-entry
+   committed-rev="1"
+   committed-date="2018-01-23T14:38:13.044091Z"
+   name="sample.fxml"
+   last-author="21606808"
+   uuid="6bc5d4b5-0ab1-48e7-b87f-da948bcf7bb1"/>
+<modify-wcprop
+   name="sample.fxml"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/svn/sokoban-godement-marchand-montaine/!svn/ver/1/src/sample/sample.fxml"/>
+<modify-entry
+   text-time="1970-01-01T00:00:00.000000Z"
+   name="sample.fxml"
+   kind="file"
+   deleted="false"
+   working-size="-1"
+   absent="false"
+   revision="17"/>
+<cp-and-translate
+   dest="sample.fxml"
+   name=".svn/tmp/text-base/sample.fxml.svn-base"/>
+<mv
+   dest=".svn/text-base/sample.fxml.svn-base"
+   name=".svn/tmp/text-base/sample.fxml.svn-base"/>
+<readonly
+   name=".svn/text-base/sample.fxml.svn-base"/>
+<modify-entry
+   name="sample.fxml"
+   checksum="28dce5935d8203f04f062bd3a1252655"/>
+<modify-entry
+   name="sample.fxml"
+   text-time="working"/>
+<modify-entry
+   name="sample.fxml"
+   working-size="working"/>
+<modify-entry
+   name="Board.java"
+   present-props=""
+   has-prop-mods="false"
+   has-props="false"/>
+<modify-entry
+   committed-rev="12"
+   committed-date="2018-02-20T16:13:08.976019Z"
+   name="Board.java"
+   last-author="21604805"
+   uuid="6bc5d4b5-0ab1-48e7-b87f-da948bcf7bb1"/>
+<modify-wcprop
+   name="Board.java"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/svn/sokoban-godement-marchand-montaine/!svn/ver/12/src/sample/Board.java"/>
+<modify-entry
+   text-time="1970-01-01T00:00:00.000000Z"
+   name="Board.java"
+   kind="file"
+   deleted="false"
+   working-size="-1"
+   absent="false"
+   revision="17"/>
+<cp-and-translate
+   dest="Board.java"
+   name=".svn/tmp/text-base/Board.java.svn-base"/>
+<mv
+   dest=".svn/text-base/Board.java.svn-base"
+   name=".svn/tmp/text-base/Board.java.svn-base"/>
+<readonly
+   name=".svn/text-base/Board.java.svn-base"/>
+<modify-entry
+   name="Board.java"
+   checksum="04a258d5f00a0518a4163913932d4c63"/>
+<modify-entry
+   name="Board.java"
+   text-time="working"/>
+<modify-entry
+   name="Board.java"
+   working-size="working"/>
+<modify-entry
+   name="Window.java"
+   present-props=""
+   has-prop-mods="false"
+   has-props="false"/>
+<modify-entry
+   committed-rev="1"
+   committed-date="2018-01-23T14:38:13.044091Z"
+   name="Window.java"
+   last-author="21606808"
+   uuid="6bc5d4b5-0ab1-48e7-b87f-da948bcf7bb1"/>
+<modify-wcprop
+   name="Window.java"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/svn/sokoban-godement-marchand-montaine/!svn/ver/1/src/sample/Window.java"/>
+<modify-entry
+   text-time="1970-01-01T00:00:00.000000Z"
+   name="Window.java"
+   kind="file"
+   deleted="false"
+   working-size="-1"
+   absent="false"
+   revision="17"/>
+<cp-and-translate
+   dest="Window.java"
+   name=".svn/tmp/text-base/Window.java.svn-base"/>
+<mv
+   dest=".svn/text-base/Window.java.svn-base"
+   name=".svn/tmp/text-base/Window.java.svn-base"/>
+<readonly
+   name=".svn/text-base/Window.java.svn-base"/>
+<modify-entry
+   name="Window.java"
+   checksum="e94ce4bab480e4f5e0ca6467a2d556e4"/>
+<modify-entry
+   name="Window.java"
+   text-time="working"/>
+<modify-entry
+   name="Window.java"
+   working-size="working"/>
+<modify-entry
+   name="board.java"
+   present-props=""
+   has-prop-mods="false"
+   has-props="false"/>
+<modify-entry
+   committed-rev="2"
+   committed-date="2018-01-23T16:03:43.263579Z"
+   name="board.java"
+   last-author="21606808"
+   uuid="6bc5d4b5-0ab1-48e7-b87f-da948bcf7bb1"/>
+<modify-wcprop
+   name="board.java"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/svn/sokoban-godement-marchand-montaine/!svn/ver/2/src/sample/board.java"/>
+<modify-entry
+   text-time="1970-01-01T00:00:00.000000Z"
+   name="board.java"
+   kind="file"
+   deleted="false"
+   working-size="-1"
+   absent="false"
+   revision="17"/>
+<cp-and-translate
+   dest="board.java"
+   name=".svn/tmp/text-base/board.java.svn-base"/>
+<mv
+   dest=".svn/text-base/board.java.svn-base"
+   name=".svn/tmp/text-base/board.java.svn-base"/>
+<readonly
+   name=".svn/text-base/board.java.svn-base"/>
+<modify-entry
+   name="board.java"
+   checksum="04a258d5f00a0518a4163913932d4c63"/>
+<modify-entry
+   name="board.java"
+   text-time="working"/>
+<modify-entry
+   name="board.java"
+   working-size="working"/>
+<modify-entry
+   name="sokoone.txt"
+   present-props=""
+   has-prop-mods="false"
+   has-props="false"/>
+<modify-entry
+   committed-rev="11"
+   committed-date="2018-02-13T16:13:45.327175Z"
+   name="sokoone.txt"
+   last-author="21606808"
+   uuid="6bc5d4b5-0ab1-48e7-b87f-da948bcf7bb1"/>
+<modify-wcprop
+   name="sokoone.txt"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/svn/sokoban-godement-marchand-montaine/!svn/ver/11/src/sample/sokoone.txt"/>
+<modify-entry
+   text-time="1970-01-01T00:00:00.000000Z"
+   name="sokoone.txt"
+   kind="file"
+   deleted="false"
+   working-size="-1"
+   absent="false"
+   revision="17"/>
+<cp-and-translate
+   dest="sokoone.txt"
+   name=".svn/tmp/text-base/sokoone.txt.svn-base"/>
+<mv
+   dest=".svn/text-base/sokoone.txt.svn-base"
+   name=".svn/tmp/text-base/sokoone.txt.svn-base"/>
+<readonly
+   name=".svn/text-base/sokoone.txt.svn-base"/>
+<modify-entry
+   name="sokoone.txt"
+   checksum="a46d1bf367f1b9f599730d670c92b246"/>
+<modify-entry
+   name="sokoone.txt"
+   text-time="working"/>
+<modify-entry
+   name="sokoone.txt"
+   working-size="working"/>
+<modify-entry
+   name="player.java"
+   present-props=""
+   has-prop-mods="false"
+   has-props="false"/>
+<modify-entry
+   committed-rev="2"
+   committed-date="2018-01-23T16:03:43.263579Z"
+   name="player.java"
+   last-author="21606808"
+   uuid="6bc5d4b5-0ab1-48e7-b87f-da948bcf7bb1"/>
+<modify-wcprop
+   name="player.java"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/svn/sokoban-godement-marchand-montaine/!svn/ver/2/src/sample/player.java"/>
+<modify-entry
+   text-time="1970-01-01T00:00:00.000000Z"
+   name="player.java"
+   kind="file"
+   deleted="false"
+   working-size="-1"
+   absent="false"
+   revision="17"/>
+<cp-and-translate
+   dest="player.java"
+   name=".svn/tmp/text-base/player.java.svn-base"/>
+<mv
+   dest=".svn/text-base/player.java.svn-base"
+   name=".svn/tmp/text-base/player.java.svn-base"/>
+<readonly
+   name=".svn/text-base/player.java.svn-base"/>
+<modify-entry
+   name="player.java"
+   checksum="89ef367bbd70c5424e19d5e70abdf1ac"/>
+<modify-entry
+   name="player.java"
+   text-time="working"/>
+<modify-entry
+   name="player.java"
+   working-size="working"/>
+<modify-entry
+   name="Loading.java"
+   present-props=""
+   has-prop-mods="false"
+   has-props="false"/>
+<modify-entry
+   committed-rev="15"
+   committed-date="2018-03-06T16:11:41.933461Z"
+   name="Loading.java"
+   last-author="21604805"
+   uuid="6bc5d4b5-0ab1-48e7-b87f-da948bcf7bb1"/>
+<modify-wcprop
+   name="Loading.java"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/svn/sokoban-godement-marchand-montaine/!svn/ver/15/src/sample/Loading.java"/>
+<modify-entry
+   text-time="1970-01-01T00:00:00.000000Z"
+   name="Loading.java"
+   kind="file"
+   deleted="false"
+   working-size="-1"
+   absent="false"
+   revision="17"/>
+<cp-and-translate
+   dest="Loading.java"
+   name=".svn/tmp/text-base/Loading.java.svn-base"/>
+<mv
+   dest=".svn/text-base/Loading.java.svn-base"
+   name=".svn/tmp/text-base/Loading.java.svn-base"/>
+<readonly
+   name=".svn/text-base/Loading.java.svn-base"/>
+<modify-entry
+   name="Loading.java"
+   checksum="b0e6fe979c951b6e7a13c01a1ff50922"/>
+<modify-entry
+   name="Loading.java"
+   text-time="working"/>
+<modify-entry
+   name="Loading.java"
+   working-size="working"/>
+<modify-entry
+   name="Panel.java"
+   present-props=""
+   has-prop-mods="false"
+   has-props="false"/>
+<modify-entry
+   committed-rev="1"
+   committed-date="2018-01-23T14:38:13.044091Z"
+   name="Panel.java"
+   last-author="21606808"
+   uuid="6bc5d4b5-0ab1-48e7-b87f-da948bcf7bb1"/>
+<modify-wcprop
+   name="Panel.java"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/svn/sokoban-godement-marchand-montaine/!svn/ver/1/src/sample/Panel.java"/>
+<modify-entry
+   text-time="1970-01-01T00:00:00.000000Z"
+   name="Panel.java"
+   kind="file"
+   deleted="false"
+   working-size="-1"
+   absent="false"
+   revision="17"/>
+<cp-and-translate
+   dest="Panel.java"
+   name=".svn/tmp/text-base/Panel.java.svn-base"/>
+<mv
+   dest=".svn/text-base/Panel.java.svn-base"
+   name=".svn/tmp/text-base/Panel.java.svn-base"/>
+<readonly
+   name=".svn/text-base/Panel.java.svn-base"/>
+<modify-entry
+   name="Panel.java"
+   checksum="99737824ffd1e05cf7953220ad6d2903"/>
+<modify-entry
+   name="Panel.java"
+   text-time="working"/>
+<modify-entry
+   name="Panel.java"
+   working-size="working"/>
+<modify-entry
+   name="mainUI.java"
+   present-props=""
+   has-prop-mods="false"
+   has-props="false"/>
+<modify-entry
+   committed-rev="1"
+   committed-date="2018-01-23T14:38:13.044091Z"
+   name="mainUI.java"
+   last-author="21606808"
+   uuid="6bc5d4b5-0ab1-48e7-b87f-da948bcf7bb1"/>
+<modify-wcprop
+   name="mainUI.java"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/svn/sokoban-godement-marchand-montaine/!svn/ver/1/src/sample/mainUI.java"/>
+<modify-entry
+   text-time="1970-01-01T00:00:00.000000Z"
+   name="mainUI.java"
+   kind="file"
+   deleted="false"
+   working-size="-1"
+   absent="false"
+   revision="17"/>
+<cp-and-translate
+   dest="mainUI.java"
+   name=".svn/tmp/text-base/mainUI.java.svn-base"/>
+<mv
+   dest=".svn/text-base/mainUI.java.svn-base"
+   name=".svn/tmp/text-base/mainUI.java.svn-base"/>
+<readonly
+   name=".svn/text-base/mainUI.java.svn-base"/>
+<modify-entry
+   name="mainUI.java"
+   checksum="2e6a1850fdd8ffd21749d87fb13e06c9"/>
+<modify-entry
+   name="mainUI.java"
+   text-time="working"/>
+<modify-entry
+   name="mainUI.java"
+   working-size="working"/>
+<modify-entry
+   name="totor.xsb"
+   present-props=""
+   has-prop-mods="false"
+   has-props="false"/>
+<modify-entry
+   committed-rev="15"
+   committed-date="2018-03-06T16:11:41.933461Z"
+   name="totor.xsb"
+   last-author="21604805"
+   uuid="6bc5d4b5-0ab1-48e7-b87f-da948bcf7bb1"/>
+<modify-wcprop
+   name="totor.xsb"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/svn/sokoban-godement-marchand-montaine/!svn/ver/15/src/sample/totor.xsb"/>
+<modify-entry
+   text-time="1970-01-01T00:00:00.000000Z"
+   name="totor.xsb"
+   kind="file"
+   deleted="false"
+   working-size="-1"
+   absent="false"
+   revision="17"/>
+<cp-and-translate
+   dest="totor.xsb"
+   name=".svn/tmp/text-base/totor.xsb.svn-base"/>
+<mv
+   dest=".svn/text-base/totor.xsb.svn-base"
+   name=".svn/tmp/text-base/totor.xsb.svn-base"/>
+<readonly
+   name=".svn/text-base/totor.xsb.svn-base"/>
+<modify-entry
+   name="totor.xsb"
+   checksum="1bad323423560a81165364237cb439c4"/>
+<modify-entry
+   name="totor.xsb"
+   text-time="working"/>
+<modify-entry
+   name="totor.xsb"
+   working-size="working"/>
+<modify-entry
+   name="Demo.java"
+   present-props=""
+   has-prop-mods="false"
+   has-props="false"/>
+<modify-entry
+   committed-rev="11"
+   committed-date="2018-02-13T16:13:45.327175Z"
+   name="Demo.java"
+   last-author="21606808"
+   uuid="6bc5d4b5-0ab1-48e7-b87f-da948bcf7bb1"/>
+<modify-wcprop
+   name="Demo.java"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/svn/sokoban-godement-marchand-montaine/!svn/ver/11/src/sample/Demo.java"/>
+<modify-entry
+   text-time="1970-01-01T00:00:00.000000Z"
+   name="Demo.java"
+   kind="file"
+   deleted="false"
+   working-size="-1"
+   absent="false"
+   revision="17"/>
+<cp-and-translate
+   dest="Demo.java"
+   name=".svn/tmp/text-base/Demo.java.svn-base"/>
+<mv
+   dest=".svn/text-base/Demo.java.svn-base"
+   name=".svn/tmp/text-base/Demo.java.svn-base"/>
+<readonly
+   name=".svn/text-base/Demo.java.svn-base"/>
+<modify-entry
+   name="Demo.java"
+   checksum="0b3877014b3c978dd8f71d04308f9079"/>
+<modify-entry
+   name="Demo.java"
+   text-time="working"/>
+<modify-entry
+   name="Demo.java"
+   working-size="working"/>
+<modify-entry
+   name="Main.java"
+   present-props=""
+   has-prop-mods="false"
+   has-props="false"/>
+<modify-entry
+   committed-rev="1"
+   committed-date="2018-01-23T14:38:13.044091Z"
+   name="Main.java"
+   last-author="21606808"
+   uuid="6bc5d4b5-0ab1-48e7-b87f-da948bcf7bb1"/>
+<modify-wcprop
+   name="Main.java"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/svn/sokoban-godement-marchand-montaine/!svn/ver/1/src/sample/Main.java"/>
+<modify-entry
+   text-time="1970-01-01T00:00:00.000000Z"
+   name="Main.java"
+   kind="file"
+   deleted="false"
+   working-size="-1"
+   absent="false"
+   revision="17"/>
+<cp-and-translate
+   dest="Main.java"
+   name=".svn/tmp/text-base/Main.java.svn-base"/>
+<mv
+   dest=".svn/text-base/Main.java.svn-base"
+   name=".svn/tmp/text-base/Main.java.svn-base"/>
+<readonly
+   name=".svn/text-base/Main.java.svn-base"/>
+<modify-entry
+   name="Main.java"
+   checksum="c0e477d43a03eb411783a572223ffd35"/>
+<modify-entry
+   name="Main.java"
+   text-time="working"/>
+<modify-entry
+   name="Main.java"
+   working-size="working"/>
+<modify-entry
+   committed-rev="15"
+   committed-date="2018-03-06T16:11:41.933461Z"
+   name=""
+   last-author="21604805"
+   uuid="6bc5d4b5-0ab1-48e7-b87f-da948bcf7bb1"/>
+<modify-wcprop
+   name=""
+   propname="svn:wc:ra_dav:version-url"
+   propval="/svn/sokoban-godement-marchand-montaine/!svn/ver/15/src/sample"/>

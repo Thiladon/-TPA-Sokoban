@@ -2,6 +2,7 @@ package sample;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferStrategy;
 
 public class Game extends Canvas implements Runnable {
 	
@@ -10,6 +11,7 @@ public class Game extends Canvas implements Runnable {
 	private JFrame parent;
 	private Thread thread;
 	private Boolean running = false;
+	private BufferStrategy bufferStrategy;
 	
 
 	public String getName() {
@@ -26,7 +28,6 @@ public class Game extends Canvas implements Runnable {
 		thread = new Thread(this);
 		thread.start();
 		running = true;
-
 	}
 
 	private synchronized void stop() {
@@ -77,20 +78,20 @@ public class Game extends Canvas implements Runnable {
 
 	private void render() {
 
-		// BufferStrategy bs = this.parent.getBufferStrategy();
-
-		BufferStrategy b = null;
+		this.bufferStrategy = this.getBufferStrategy();
+		System.out.println(this.getBufferStrategy());
 		
-		/* if(bs == null) {
+		if(this.bufferStrategy == null) {
+			this.createBufferStrategy(3);
 			return;
 		}
 
-		Graphics g = bs.getDrawGraphics();
+		Graphics g = this.bufferStrategy.getDrawGraphics();
 		
 		g.setColor(Color.black);
 
 		g.dispose();
-		bs.show(); */
+		this.bufferStrategy.show();
 	}
 
 	/* 

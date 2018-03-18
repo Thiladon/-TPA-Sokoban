@@ -133,6 +133,9 @@ echo.
 
 set /p gitMessage=
 
+git status
+pause
+
 git add *
 git commit -m "%gitMessage%"
 git push --all -f

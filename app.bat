@@ -160,7 +160,7 @@ echo  $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 echo $$                                                                           $
 echo $$                          /*/  Pick a choice  \*\                          $
 echo $$                                                                           $
-echo $$   [ST] Check status   [CS] Compile and start      [C] Compile             $
+echo $$   [SR] Status of repo   [CS] Compile and start    [C] Compile             $
 echo $$                                                                           $
 echo $$    [G] Git commit Files  [S] Start                [Q] Quit cmd            $
 echo $$                                                                           $

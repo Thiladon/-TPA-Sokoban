@@ -2,6 +2,9 @@
 
 set isStartingAfterCompile=0
 set gotoManager=0
+set __GIT_FORGE__="..\-TPA-Sokoban-forge"
+set __SVN__="..\projet-tpa-godement-marchand-montaine-brillet-menard"
+set __GIT__="..\-TPA-Sokoban"
 
 @echo off
 cls
@@ -9,11 +12,11 @@ echo  $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 echo $$                                                                           $
 echo $$                          /*/  Pick a choice  \*\                          $
 echo $$                                                                           $
-echo $$   [C] Compile           [CS] Compile and start   [S] Start                $
+echo $$   [SR] Status of repo   [CS] Compile and start    [C] Compile             $
 echo $$                                                                           $
-echo $$   [G]  Git commit Files [M] Modify ReadMe.md     [Q] Quit cmd             $
+echo $$    [G] Git commit Files  [S] Start                [Q] Quit cmd            $
 echo $$                                                                           $
-echo $$   [GS] Git status                                                         $
+echo $$    [M] Modify ReadMe.md                                                   $
 echo $$                                                                           $
 echo $$                                                                           $
 echo $$                                                                           $
@@ -39,7 +42,7 @@ if /i "%clientKey%"=="C" (
 	GOTO git
 ) else if /i "%clientKey%"=="Git" (
 	GOTO git
-) else if /i "%clientKey%"=="GS" (
+) else if /i "%clientKey%"=="SR" (
 	GOTO gitStatus
 ) else if /i "%clientKey%"=="Status" (
 	GOTO gitStatus
@@ -157,11 +160,11 @@ echo  $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 echo $$                                                                           $
 echo $$                          /*/  Pick a choice  \*\                          $
 echo $$                                                                           $
-echo $$   [C] Compile           [CS] Compile and start   [S] Start                $
+echo $$   [ST] Check status   [CS] Compile and start      [C] Compile             $
 echo $$                                                                           $
-echo $$   [G]  Git commit Files [M] Modify ReadMe.md     [Q] Quit cmd             $
+echo $$    [G] Git commit Files  [S] Start                [Q] Quit cmd            $
 echo $$                                                                           $
-echo $$   [GS] Git status                                                         $
+echo $$    [M] Modify ReadMe.md                                                   $
 echo $$                                                                           $
 echo $$                                                                           $
 echo $$                                                                           $
@@ -169,7 +172,25 @@ echo $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 echo $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 echo.
 echo.
+
+cd "%__GIT_FORGE__%"
+echo git forge status:
 git status
+echo.
+echo.
+
+cd "%__GIT__%"
+echo git status:
+git status
+echo.
+echo.
+
+rem cd "%__SVN__%"
+rem echo svn update:
+rem svn update
+rem echo.
+rem echo.
+
 pause
 
 GOTO gui

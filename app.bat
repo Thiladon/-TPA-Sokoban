@@ -130,20 +130,25 @@ echo $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 echo $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 echo.
 echo.
-
-set /p gitMessage=
-
-echo "%gitMessage%"
+if ["%gitMessage%"] == [] (
+	set /p gitMessage=
+) else (
+	set gitMessage="test"
+)
+echo vim here
 
 git add *
 git commit -m "%gitMessage%"
 git push --all -f
-pause
 
 GOTO gui
 
 :modify
-GOTO gui
+
+call vim "README.md"
+
+set gitMessage="Update ReadMe.md"
+GOTO git
 
 :quit
 exit

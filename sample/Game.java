@@ -3,25 +3,42 @@ package sample;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
+import java.net.URL;
+import java.io.*;
+import javax.imageio.ImageIO;
 
 public class Game extends Canvas implements Runnable {
 	
 	private static final long serialVersionUID = 1550691097823471818L;
+	private int width, height, caseWidth, caseHeight;
+	private int gameState = 0;
 	private String name = "Game";
 	private JFrame parent;
 	private Thread thread;
 	private Boolean running = false;
 	private BufferStrategy bufferStrategy;
+	private Handler handler;
+	private String _RESSOURCE_DIR_ = "sample/images/";
+	private Boolean isDrawed = true;
 	
 
 	public String getName() {
 		return name;
 	}
 
-	public Game(JFrame parent) {
-		this.parent = parent;
+	public Game(JFrame p, int width, int height) {
+		this.width = width;
+		this.height = height;
+		this.caseWidth = this.width/24;
+		this.caseHeight = this.height/24;
+
+		p.setPreferredSize(new Dimension(this.width+16, this.height+44));
+		p.setLocationRelativeTo(null);
+		
+		setSize(this.width+16, this.height+44);
 		setBackground(Color.black);
-		setSize(parent.getContentPane().getSize().width, parent.getContentPane().getSize().height);
+		// handler = new Handler();
 	}
 
 	public synchronized void start() {
@@ -53,18 +70,18 @@ public class Game extends Canvas implements Runnable {
 			lastTime = now;
 
 			while (delta >= 1) {
-				this.tick();
+				tick();
 				delta--;
 			}
 			if (running) {
-				this.render();
+				render();
 			}
 			loops++;
 
 			if(System.currentTimeMillis() - nextGameTick > 1000) {
 				nextGameTick += 1000;
-				System.out.println("FPS: " + loops);
-				System.console().writer().println("FPS: " + loops);
+				// System.out.println("(Game.java:79) => FPS: " + loops);
+				// System.out.println("(Game.java:133) => " + this.getBufferStrategy());
 				loops = 0;
 			}
 		}
@@ -73,31 +90,112 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	private void tick() {
-
+		// andler.tick();
 	}
 
 	private void render() {
 
-		this.bufferStrategy = this.getBufferStrategy();
-		System.out.println(this.getBufferStrategy());
+		bufferStrategy = this.getBufferStrategy();
 		
-		if(this.bufferStrategy == null) {
-			this.createBufferStrategy(3);
+		if(bufferStrategy == null) {
+			createBufferStrategy(3);
 			return;
 		}
 
-		Graphics g = this.bufferStrategy.getDrawGraphics();
-		
-		g.setColor(Color.black);
+		Graphics g = bufferStrategy.getDrawGraphics();
 
-		g.dispose();
-		this.bufferStrategy.show();
+		if(this.gameState == 0) {
+			System.out.println("(Game.java:105) => Start");
+			
+			drawMap(g);
+
+			System.out.println("(Game.java:109) => End");
+
+			this.gameState++;
+			this.isDrawed = false;
+		}
+			
+		// handler.render(g);
+
+		if(this.isDrawed == false) {
+			g.dispose();
+			bufferStrategy.show();
+			this.isDrawed = true;
+		}
 	}
 
-	/* 
-		public void paint(Graphics g) {
-			g.setColor(Color.white);
-			g.drawRect(100, 250, 100, 200);
+	public void drawMap(Graphics g) {
+				
+		URL mapSpritesheets = getClass().getClassLoader().getResource(_RESSOURCE_DIR_ + "mapSpritesheets.png");
+		URL mainMenu = getClass().getClassLoader().getResource(_RESSOURCE_DIR_ + "mainMenu.png");
+
+		if (mapSpritesheets != null && mainMenu != null) {
+			try {
+
+				Image img = ImageIO.read(mapSpritesheets);
+				Image mainMenuImg = ImageIO.read(mainMenu);
+
+				// Prepare an Image object to be used by drawImage()
+
+				// The img "clip" bounded by (scrX1, scrY2) and (scrX2, srcY2) is scaled and drawn from
+   				// (destX1, destY1) to (destX2, destY2) on the display.
+
+				int i = 0;
+				int block = -2;
+				int srcx1 = 0, srcx2 = 24;
+
+				for(int y = 0; y < this.caseHeight; y++) {
+					
+					block++;
+
+					for(int x = 0; x < this.caseWidth; x++) { 
+						i++;
+
+						if(block >= 1) {
+							System.out.println("(Game.java:147) => block--");
+							block--;
+							srcx1 = 24*block; 
+							srcx2 = 24+(24*block);
+						} else {
+							System.out.println("(Game.java:152) => block++");
+							block++;
+							srcx1 = 24*block; 
+							srcx2 = 24+(24*block);
+						}
+
+						int dstx1 = 8+(24*x),
+						dsty1 = 0+(24*y),
+						dstx2 = 8+(24+(24*x)),
+						dsty2 = 24+(24*y),
+						srcy1 = 0,
+						srcy2 = 24;
+
+			    		/*System.out.println("(Game.java:165) => " +
+			    			"Executed: " + i + "\n" +
+			    			"                   block: " + block + "\n" +
+			    			"                   dstx1: " + dstx1 + "\n" +
+			    			"                   dsty1: " + dsty1 + "\n" +
+			    			"                   dstx2: " + dstx2 + "\n" +
+			    			"                   dsty2: " + dsty2 + "\n" +
+			    			"                   srcx1: " + srcx1 + "\n" +
+			    			"                   srcy1: " + srcy1 + "\n" +
+			    			"                   srcx2: " + srcx2 + "\n" +
+			    			"                   srcy2: " + srcy2
+			    		);*/
+
+						g.drawImage(img, dstx1, dsty1, dstx2, dsty2, srcx1, srcy1, srcx2, srcy2, this);
+					}
+				}
+
+				g.drawImage(mainMenuImg, 8, 0, this.width, this.height, this);
+ 
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else {
+		   System.err.println("(Game.java:129) => Couldn't find file: " + mapSpritesheets + " or " + mainMenu);
 		}
-	*/
+	    
+	}
+	
 }

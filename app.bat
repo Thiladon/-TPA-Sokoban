@@ -136,7 +136,7 @@ set /p gitMessage=
 echo "%gitMessage%"
 
 git add *
-git commit -m "new Commit"
+git commit -m "%gitMessage%"
 git push --all -f
 pause
 

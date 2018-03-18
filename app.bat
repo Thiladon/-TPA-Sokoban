@@ -11,7 +11,9 @@ echo $$                          /*/  Pick a choice  \*\                        
 echo $$                                                                           $
 echo $$   [C] Compile           [CS] Compile and start   [S] Start                $
 echo $$                                                                           $
-echo $$   [G] Git commit Files  [M] Modify ReadMe.md     [Q] Quit cmd             $
+echo $$   [G]  Git commit Files [M] Modify ReadMe.md     [Q] Quit cmd             $
+echo $$                                                                           $
+echo $$   [GS] Git status                                                         $
 echo $$                                                                           $
 echo $$                                                                           $
 echo $$                                                                           $
@@ -37,6 +39,10 @@ if /i "%clientKey%"=="C" (
 	GOTO git
 ) else if /i "%clientKey%"=="Git" (
 	GOTO git
+) else if /i "%clientKey%"=="GS" (
+	GOTO gitStatus
+) else if /i "%clientKey%"=="Status" (
+	GOTO gitStatus
 ) else if /i "%clientKey%"=="M" (
 	GOTO modify
 ) else if /i "%clientKey%"=="Modify" (
@@ -133,9 +139,6 @@ echo.
 
 set /p gitMessage=
 
-git status
-pause
-
 git add *
 git commit -m "%gitMessage%"
 git push --all -f
@@ -147,6 +150,29 @@ GOTO gui
 call vim "README.md"
 
 GOTO git
+
+:gitStatus
+cls
+echo  $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+echo $$                                                                           $
+echo $$                          /*/  Pick a choice  \*\                          $
+echo $$                                                                           $
+echo $$   [C] Compile           [CS] Compile and start   [S] Start                $
+echo $$                                                                           $
+echo $$   [G]  Git commit Files [M] Modify ReadMe.md     [Q] Quit cmd             $
+echo $$                                                                           $
+echo $$   [GS] Git status                                                         $
+echo $$                                                                           $
+echo $$                                                                           $
+echo $$                                                                           $
+echo $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+echo $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+echo.
+echo.
+git status
+pause
+
+GOTO gui
 
 :quit
 exit

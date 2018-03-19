@@ -31,7 +31,9 @@ public class Main {
         }
         
         frame.getContentPane().add(cards, BorderLayout.CENTER);
+        
         gamePanel.game.start();
+
 
         /*
          * Allow the window to be dislay in top of all

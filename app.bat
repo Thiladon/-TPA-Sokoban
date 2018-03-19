@@ -1,12 +1,12 @@
 :gui
 
-set isStartingAfterCompile=0
-set gotoManager=0
+set isStartingAfterCompile=False
 set __GIT_FORGE__="..\-TPA-Sokoban-forge"
 set __SVN__="..\projet-tpa-godement-marchand-montaine-brillet-menard"
 set __GIT__="..\-TPA-Sokoban"
 
 @echo off
+
 cls
 echo  $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 echo $$                                                                           $
@@ -27,12 +27,16 @@ echo.
 set /p clientKey=
 
 if /i "%clientKey%"=="C" (
+	set isStartingAfterCompile=False
 	GOTO compile
 ) else if /i "%clientKey%"=="Compile" (
+	set isStartingAfterCompile=False
 	GOTO compile
 ) else if /i "%clientKey%"=="CS" (
+	set isStartingAfterCompile=True
 	GOTO compileandstart
 ) else if /i "%clientKey%"=="Compile&Start" (
+	set isStartingAfterCompile=True
 	GOTO compileandstart
 ) else if /i "%clientKey%"=="S" (
 	GOTO launch
@@ -78,7 +82,7 @@ echo.
 javac sample/*.java
 
 pause
-GOTO gui
+GOTO recompile
 
 :compileandstart
 cls
@@ -94,12 +98,49 @@ echo $$                                                                         
 echo $$                                                                           $
 echo $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 echo $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-echo.
-echo.
 
 javac sample/*.java
 
 pause
+
+:recompile
+
+echo.
+echo.
+echo Re-compile ?: 
+echo.
+set /p clientKey=
+echo.
+echo.
+
+if /i "%clientKey%"=="Yes" (
+	if /i "%isStartingAfterCompile%"=="False" (
+		GOTO compile
+	) else (
+		GOTO compileandstart
+	)
+) else if /i "%clientKey%"=="Y" (
+	if /i "%isStartingAfterCompile%"=="False" (
+		GOTO compile
+	) else (
+		GOTO compileandstart
+	)
+) else if /i "%clientKey%"=="No" (
+	if /i "%isStartingAfterCompile%"=="False" (
+		GOTO gui
+	) else (
+		GOTO launch
+	)
+) else if /i "%clientKey%"=="N" (
+	if /i "%isStartingAfterCompile%"=="False" (
+		GOTO gui
+	) else (
+		GOTO launch
+	)
+) else (
+	echo Not a valid Key
+	GOTO recompile
+)
 
 :launch
 cls

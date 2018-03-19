@@ -9,22 +9,26 @@ public class Handler {
 
 	public void tick() {
 		for(int i = 0; i < object.size(); i++) {
-			GameObject tempObject = object.get(i);
+			GameObject _tempObject_ = object.get(i);
 
-			tempObject.tick();
+			_tempObject_.tick();
 		}
 	}
 
 	public void render(Graphics g) {
 		for(int i = 0; i < object.size(); i++) {
-			GameObject tempObject = object.get(i);
+			GameObject _tempObject_ = object.get(i);
 
-			tempObject.render(g);
+			_tempObject_.render(g);
 		}
 	}
 
 	public void addObject(GameObject object) {
 		this.object.add(object);
+	}
+
+	public GameObject getObject(int i) {
+		return this.object.get(i);
 	}
 
 	public void removeObject(GameObject object) {

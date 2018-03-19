@@ -6,6 +6,7 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.io.*;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 public class Game extends Canvas implements Runnable {
@@ -20,7 +21,7 @@ public class Game extends Canvas implements Runnable {
 	private BufferStrategy bufferStrategy;
 	private Handler handler;
 	private String _RESSOURCE_DIR_ = "sample/images/";
-	private Boolean isDrawed = true;
+	public Boolean isDrawed = true;
 	
 
 	public String getName() {
@@ -28,17 +29,20 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public Game(JFrame p, int width, int height) {
+		handler = new Handler();
+		this.addKeyListener(new KeyInput(handler, this));
+		
+		this.parent = p;
 		this.width = width;
 		this.height = height;
 		this.caseWidth = this.width/24;
 		this.caseHeight = this.height/24;
 
-		p.setPreferredSize(new Dimension(this.width+16, this.height+44));
-		p.setLocationRelativeTo(null);
-		
+		this.parent.setPreferredSize(new Dimension(this.width+16, this.height+44));
+		this.parent.setLocationRelativeTo(null);
+
 		setSize(this.width+16, this.height+44);
 		setBackground(Color.black);
-		// handler = new Handler();
 	}
 
 	public synchronized void start() {
@@ -55,6 +59,8 @@ public class Game extends Canvas implements Runnable {
 			e.printStackTrace();
 		}
 	}
+
+	// @Getter:
 
 	public void run() {
 		long lastTime = System.nanoTime();
@@ -90,7 +96,7 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	private void tick() {
-		// andler.tick();
+		handler.tick();
 	}
 
 	private void render() {
@@ -105,21 +111,31 @@ public class Game extends Canvas implements Runnable {
 		Graphics g = bufferStrategy.getDrawGraphics();
 
 		if(this.gameState == 0) {
-			System.out.println("(Game.java:105) => Start");
+			System.out.println("(Game.java:105) => Start loading map");
 			
 			drawMap(g);
 
-			System.out.println("(Game.java:109) => End");
+			System.out.println("(Game.java:109) => Loading map end");
 
+			handler.addObject(new Player(4,4, ID.Player));
+			System.out.println(handler.getObject(0).getStringCasePosition());
+			System.out.println(handler.getObject(0).getId());
+			
 			this.gameState++;
 			this.isDrawed = false;
 		}
 			
-		// handler.render(g);
 
 		if(this.isDrawed == false) {
+			
+			System.out.println("(Game.java:131) => Rendering handler");
+			
+			handler.render(g);
+			
 			g.dispose();
+
 			bufferStrategy.show();
+			
 			this.isDrawed = true;
 		}
 	}
@@ -152,12 +168,10 @@ public class Game extends Canvas implements Runnable {
 						i++;
 
 						if(block >= 1) {
-							System.out.println("(Game.java:147) => block--");
 							block--;
 							srcx1 = 24*block; 
 							srcx2 = 24+(24*block);
 						} else {
-							System.out.println("(Game.java:152) => block++");
 							block++;
 							srcx1 = 24*block; 
 							srcx2 = 24+(24*block);
@@ -187,7 +201,7 @@ public class Game extends Canvas implements Runnable {
 					}
 				}
 
-				g.drawImage(mainMenuImg, 8, 0, this.width, this.height, this);
+				// g.drawImage(mainMenuImg, 8, 0, this.width, this.height, this);
  
 			} catch (Exception e) {
 				e.printStackTrace();

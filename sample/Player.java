@@ -12,6 +12,7 @@ public class Player extends GameObject {
 	}
 
 	public void render(Graphics g) {
-
+		g.setColor(Color.white);
+		g.fillRect(8+(24*x), 0+(24*y), 24, 24);
 	}
 }

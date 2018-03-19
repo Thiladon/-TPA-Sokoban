@@ -8,8 +8,10 @@ Thilladon (MARCHAND Alexis)
 
 project/
 
- │ 
+ │
+
  ├─── main/
+
  │     ├─── images/
 
  │     │    └─── # png files.
@@ -31,23 +33,35 @@ project/
  └─── README.md # Contains this text.
 
 
-
 ## TODO
 
 project/
+
  │
+
  ├─── main/					(0%)
+
  │     ├─── Player.java 		(0%)
+
  │     │     └─── Movements 		(0%)
+
  │     ├─── Game.java 			(0%)
+
  │     │     ├─── Game End loop 	(0%)
+
  │     │     ├─── Menu Panel 		(0%)
+
  │     │     ├─── Option Panel 		(0%)
+
  │     │     └─── readFile method	(0%)
+
  │     │
+
  │     ├─── Block.java 			(0%)
+
  │     ├─── Hole.java 			(0%)
  
+
 ## Links
 
 Canvas Event Listener Tutorial : [https://www.youtube.com/watch?v=NWqDmSowp3k]

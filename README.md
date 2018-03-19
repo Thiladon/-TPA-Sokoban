@@ -8,30 +8,28 @@ Thilladon (MARCHAND Alexis)
 
 project/
 
- │
- 
+ │ 
  ├─── main/
- 
  │     ├─── images/
- 
+
  │     │    └─── # png files.
- 
+
  │     ├───class/
- 
+
  │     │    └─── # class files.
- 
+
  │     │
- 
+
  │     └─── files.java
- 
+
  │
- 
+
  ├─── app.bat # Controll the app.
- 
+
  ├─── LICENCE # App under Licence.
- 
+
  └─── README.md # Contains this text.
- 
+
 
 
 ## TODO

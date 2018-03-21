@@ -1,12 +1,15 @@
-:gui
-
-set isStartingAfterCompile=False
-set __GIT_FORGE__="..\-TPA-Sokoban-forge"
-set __SVN__="..\projet-tpa-godement-marchand-montaine-brillet-menard"
-set __GIT__="..\-TPA-Sokoban"
-
+:restart
 @echo off
 
+set __path__=%~dp0
+set __path__=%__path__:~0,-21%
+set __GIT_FORGE__=%__path__%-TPA-Sokoban-forge
+set __SVN__=%__path__%projet-tpa-godement-marchand-montaine-brillet-menard
+set __GIT__=%__path__%-TPA-Sokoban
+
+set isStartingAfterCompile=False
+
+:gui
 cls
 echo  $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 echo $$                                                                           $
@@ -79,9 +82,6 @@ echo $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 echo.
 echo.
 
-javac sample/*.java
-
-pause
 GOTO recompile
 
 :compileandstart
@@ -99,11 +99,10 @@ echo $$                                                                         
 echo $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 echo $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
-javac sample/*.java
-
-pause
-
 :recompile
+
+javac src/*.java
+pause
 
 echo.
 echo.
@@ -159,7 +158,7 @@ echo $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 echo.
 echo.
 
-java sample.Main
+java class.Main
 
 pause
 GOTO gui
@@ -183,9 +182,7 @@ echo.
 
 set /p gitMessage=
 
-git add *
-git commit -m "%gitMessage%"
-git push --all -f
+cd .. && git add * && git commit -m "%gitMessage%" && git push --all -f && cd Windows
 
 GOTO gui
 
@@ -226,11 +223,14 @@ git status
 echo.
 echo.
 
+
 rem cd "%__SVN__%"
 rem echo svn update:
 rem svn update
 rem echo.
 rem echo.
+
+cd Windows
 
 pause
 

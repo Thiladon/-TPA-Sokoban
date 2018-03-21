@@ -1,4 +1,4 @@
-package sample;
+package src;
 
 import javax.swing.*;
 import java.awt.*;
@@ -153,7 +153,7 @@ public class Game extends Canvas implements Runnable {
 				// Prepare an Image object to be used by drawImage()
 
 				// The img "clip" bounded by (scrX1, scrY2) and (scrX2, srcY2) is scaled and drawn from
-   				// (destX1, destY1) to (destX2, destY2) on the display.
+   			// (destX1, destY1) to (destX2, destY2) on the display.
 
 				int i = 0;
 				int block = -2;
@@ -177,11 +177,11 @@ public class Game extends Canvas implements Runnable {
 						}
 
 						int dstx1 = 8+(24*x),
-						dsty1 = 0+(24*y),
-						dstx2 = 8+(24+(24*x)),
-						dsty2 = 24+(24*y),
-						srcy1 = 0,
-						srcy2 = 24;
+							 dsty1 = 0+(24*y),
+							 dstx2 = 8+(24+(24*x)),
+							 dsty2 = 24+(24*y),
+							 srcy1 = 0,
+							 srcy2 = 24;
 
 			    		/*System.out.println("(Game.java:165) => " +
 			    			"Executed: " + i + "\n" +

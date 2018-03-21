@@ -18,7 +18,6 @@ public class Main {
         
         // Contains all the frame on our window
         GamePanel gamePanel = new GamePanel(frame, width, height);
-        gamePanel.game.start();
 
         JPanel[] container = { gamePanel };
         
@@ -39,6 +38,7 @@ public class Main {
 
         frame.pack();
         frame.setVisible(true);
+        gamePanel.game.start();
 
 	}
 }

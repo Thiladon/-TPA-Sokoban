@@ -1,4 +1,4 @@
-package sample;
+package src;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,7 +20,7 @@ public class Game extends Canvas implements Runnable {
 	private Boolean running = false;
 	private BufferStrategy bufferStrategy;
 	private Handler handler;
-	private String _RESSOURCE_DIR_ = "sample/images/";
+	private String _RESSOURCE_DIR_ = "src/images/";
 	public Boolean isDrawed = true;
 	
 

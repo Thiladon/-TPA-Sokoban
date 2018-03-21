@@ -3,13 +3,16 @@
 
 set __path__=%~dp0
 set __path__=%__path__:~0,-21%
-set __GIT_FORGE__=%__path__%-TPA-Sokoban-forge
-set __SVN__=%__path__%projet-tpa-godement-marchand-montaine-brillet-menard
-set __GIT__=%__path__%-TPA-Sokoban
+set __SVN__=%__path__%projet-tpa-godement-marchand-montaine-brillet-menard\
+set __GIT_FORGE__=%__path__%-TPA-Sokoban-forge\
+set __GIT__=%__path__%-TPA-Sokoban\
 
 set isStartingAfterCompile=False
 
 :gui
+
+cd /d "%__GIT__%/Windows"
+
 cls
 echo  $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 echo $$                                                                           $
@@ -101,7 +104,9 @@ echo $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 :recompile
 
-javac src/*.java
+cd /d "%__GIT__%/Windows/"
+javac -d class src/*.java
+
 pause
 
 echo.
@@ -158,7 +163,9 @@ echo $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 echo.
 echo.
 
-java class.Main
+cd /d "%__GIT__%/Windows/class"
+java src.Main
+cd ..
 
 pause
 GOTO gui
@@ -182,12 +189,13 @@ echo.
 
 set /p gitMessage=
 
-cd .. && git add * && git commit -m "%gitMessage%" && git push --all -f && cd Windows
+cd /d "%__GIT__%" && git add * && git commit -m "%gitMessage%" && git push --all -f && cd Windows
 
 GOTO gui
 
 :modify
 
+cd /d "%__GIT__%"
 call vim "README.md"
 
 GOTO git
@@ -230,7 +238,7 @@ rem svn update
 rem echo.
 rem echo.
 
-cd Windows
+cd /d "%__GIT__%/Windows"
 
 pause
 

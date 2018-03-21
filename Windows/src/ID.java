@@ -1,4 +1,4 @@
-package sample;
+package src;
 
 public enum ID {
 	Player(),

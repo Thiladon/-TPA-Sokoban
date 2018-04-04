@@ -164,7 +164,7 @@ echo.
 echo.
 
 cd /d "%__GIT__%/Windows/class"
-java src.Main
+java src.Game
 cd ..
 
 pause

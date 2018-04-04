@@ -2,28 +2,23 @@ package src;
 
 import java.awt.*;
 import javax.swing.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import java.util.ArrayList;
+public class Block extends GameObject {
 
-public class Player extends GameObject {
-
-	private Handler handler;
-	private List<ArrayList<Integer>> map;
-	private Game game;
 	private int isMoving, animation_delay, deplacement_delay, direction;
-
-	public Player(int x, int y, ID id, List<ArrayList<Integer>> map, Handler handler, Game game) {
+	private List<ArrayList<Integer>> map;
+	private Handler handler;
+	
+	public Block(int x, int y, ID id, List<ArrayList<Integer>> map, Handler handler) {
 		super(x, y, id);
 
-		this.game = game; // temps
-		this.handler = handler;
-		this.map = map;
 		this.direction = 0;
-		this.isMoving = -1; // false
-		this.animation_delay = 10;
-		this.deplacement_delay = 60;
+
+		this.map = map;
+		this.handler = handler;
 
 		this.velX = 0;
 		this.velY = 0;
@@ -42,54 +37,40 @@ public class Player extends GameObject {
 		// On ne peut pas se déplacer si un mouvement est déjà en cours !
 		if(isMoving < 0 && isCollided != true) {
 
-			// On commence l'animation
 			isMoving = 1;
 
-			int nb = 0;
 			for (GameObject _tempObject_ : handler.object) {
 				if( _tempObject_.getId() == ID.Block ) {
-					System.out.println(
-						"(Player.java:49) nb : " + nb++ + "\n" + 
-						"(Player.java:49) _tempObject_.getVelX() : " + _tempObject_.getVelX() + "\n" + 
-						"(Player.java:49) _tempObject_.getVelY() : " + _tempObject_.getVelY() + "\n"
-					);
 					// On cherche les blocks.
-
-					// _tempObject_.setVelX(0);
-					// _tempObject_.setVelY(0);
 
 					if ( nextX == _tempObject_.getX() && nextY == _tempObject_.getY()) {
 						Boolean isBlockCollided = mapCollision( map, nextX + velX, nextY + velY );
 						if (isBlockCollided != true) {
-							_tempObject_.setVelX(velX);
-							_tempObject_.setVelY(velY);
+							_tempObject_.setX(nextX);
+							_tempObject_.setY(nextY);
 						} else {
-							nextX = x;
-							nextY = y;
+							nextX -= velX;
+							nextY -= velY;
 							isMoving = -1;
 						}
-					} else {
-						_tempObject_.setVelX(0);
-						_tempObject_.setVelY(0);
 					}
 				}
 			}
 
-			// On change la direction du player
 			this.direction = direction;
 			
+			// On commence l'animation
+			isMoving = 1;
 				
 			// On effectue le déplacement
 			x = nextX;
 			y = nextY;
 		}
-
-		// System.out.println("Called : " + tickNumber++ + " times.");
 	}
 
 	public void render(Graphics g) {
-		g.setColor(Color.white);
-		
+		g.setColor(Color.blue);
+
 		int _frame 		= 0, // Numéro de l'image à prendre pour l'animation
 			_decalageX 	= 0,
 			_decalageY 	= 0; // Décalage à appliquer à la position du player
@@ -128,7 +109,5 @@ public class Player extends GameObject {
 		}
 
 		g.fillRect((x * 24) + _decalageX, (y * 24) + _decalageY, 24, 24);
-
 	}
-
 }

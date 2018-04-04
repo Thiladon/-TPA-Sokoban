@@ -7,48 +7,130 @@ import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 import javax.imageio.ImageIO;
 
 public class Game extends Canvas implements Runnable {
-	
+
 	private static final long serialVersionUID = 1550691097823471818L;
-	private int width, height, caseWidth, caseHeight;
-	private int gameState = 0;
-	private String name = "Game";
-	private JFrame parent;
+	private String name = "Sokoban";	//Nom de la JFrame.
+
+	/*
+	 * On instancie les variables nécessaire
+	 * au fonctionnement du jeu.
+	 */
+
 	private Thread thread;
+	private Board board;
+	private List<ArrayList<Integer>> map;
+	private Config config;
 	private Boolean running = false;
 	private BufferStrategy bufferStrategy;
-	private Handler handler;
-	private String _RESSOURCE_DIR_ = "src/images/";
-	public Boolean isDrawed = true;
-	
+	public int width, height, gameLevel;
+	public Handler handler;
 
-	public String getName() {
-		return name;
+	/*
+	 * Public Game() :
+	 *		(Type) => Constructor.
+	 */
+
+	public Game() {
+		this.handler = new Handler(); 			// On met le gestionnaire en top pour éviter une thread-0 error.
+		this.gameLevel = 1;						// Niveau de jeu (Instancié à 1 par défaut).
+		this.config = new Config();				// Configuration de base de l'interface.
+		this.width  = config.width[1];			// Largeur par défaut.
+		this.height = config.height[1];			// Hauteur par défaut.
+		this.map = this.readXsbFile(gameLevel);	// Définit la map se lisant comme un int[y][x] par lecture d'un fichier (.xsb).
+		this.board  = new Board(map);			// Instance de la variable board par rapport à map.
+
+		this.init();
+		
+		new Window(width, height, this.name, this); //On créé la fenêtre
 	}
 
-	public Game(JFrame p, int width, int height) {
-		handler = new Handler();
-		this.addKeyListener(new KeyInput(handler, this));
+	public void init() {
+		/*
+		*
+		*/
+		for(int y = 0; y < map.size(); y++) {
+			ArrayList<Integer> row = map.get(y);
+			for (int x = 0; x < row.size(); x++) {
+				int cell = row.get(x);
+				System.out.println("cell: " + cell + "x: " + x + "\ny: " + y);
+				if (cell == 9999) {
+					System.out.println("new Player(" + x + ", " + y + ", " + ID.Player + ") added to handler");
+					this.handler.addObject(new Player(x, y, ID.Player, map, handler, this));
+				}
+				if (cell == 9998) {
+					System.out.println("new Block(" + x + ", " + y + ", " + ID.Block + ") added to handler");
+					this.handler.addObject(new Block(x, y, ID.Block, map, handler));
+				}
+			}
+		}
+	}
+
+	public String getBoardList() {
 		
-		this.parent = p;
-		this.width = width;
-		this.height = height;
-		this.caseWidth = this.width/24;
-		this.caseHeight = this.height/24;
+		// fonction utilisé pour le débugage
+		
+		String message = "(Board.java:25) boardList :\n";
+		for(int y = 0; y < map.size(); y++) {
+			ArrayList<Integer> row = map.get(y);
+			message += map.get(y) + "\n";
+		}
+		return message;
+	}
 
-		this.parent.setPreferredSize(new Dimension(this.width+16, this.height+44));
-		this.parent.setLocationRelativeTo(null);
+	public List<ArrayList<Integer>> readXsbFile(int level) {
+		
+		// Lecture d'un fichier (.xsb).
+		
+		List<ArrayList<Integer>> rowList = new ArrayList<ArrayList<Integer>>();
+		ArrayList<Integer> colList = new ArrayList<Integer>();
 
-		setSize(this.width+16, this.height+44);
-		setBackground(Color.black);
+		FileReader inputStream = null;
+		try {
+			inputStream = new FileReader("src/levels/level-" + level + ".xsb");
+			int character;
+			while ((character = inputStream.read()) != -1) {
+				if (character == 35 && character != 69) colList.add(0); 	// Wall
+				if (character == 45 && character != 69) colList.add(1); 	// FLoor
+				if (character == 46 && character != 69) colList.add(2); 	// Hole
+				if (character == 36 && character != 69) colList.add(9998); 	// Block
+				if (character == 64 && character != 69) colList.add(9999); 	// Player
+				if (character == 38 && character != 69) {
+					rowList.add(colList);
+					colList = new ArrayList<Integer>();
+				}
+			}
+			
+			if (inputStream != null) {
+				inputStream.close();
+			}
+			
+			return rowList;
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return rowList;
+	
 	}
 
 	public synchronized void start() {
 		thread = new Thread(this);
 		thread.start();
 		running = true;
+	}
+
+	public synchronized void sleep(int i) {
+		try {
+			thread.sleep(i);
+			System.out.println("Thread Sleep");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	private synchronized void stop() {
@@ -60,24 +142,28 @@ public class Game extends Canvas implements Runnable {
 		}
 	}
 
-	// @Getter:
-
 	public void run() {
-		long lastTime = System.nanoTime();
-		double fps = 60.0;
-		double skipTicks = 1000000000 / fps;
+		long lastTime = System.currentTimeMillis();
+		double fps = 60.0; 	// 60 images par seconde
+		double skipTicks = 1000 / fps; 	// 1 seconde divisé par le nombre d'image par seconde pour un résultat en ms ( 16.6666667 ms )
 		double delta = 0.0;
 		long nextGameTick = System.currentTimeMillis();
 		int loops = 0;
+		int deltaNumber = 0;
 
 		while(running) {
-			long now = System.nanoTime();
-			delta += (now + lastTime) / skipTicks;
+			long now = System.currentTimeMillis();
+
+			// Diff de temps écouler en l'espace d'un tour de la boucle / nos 16.666667 ms
+			// Nous permet de faire 60 passage dans le boucle while(delta>=1) => Donc d'être à 60 fps.
+
+			delta += (now - lastTime) / skipTicks;
+
 			lastTime = now;
 
 			while (delta >= 1) {
-				tick();
 				delta--;
+				tick();
 			}
 			if (running) {
 				render();
@@ -86,12 +172,11 @@ public class Game extends Canvas implements Runnable {
 
 			if(System.currentTimeMillis() - nextGameTick > 1000) {
 				nextGameTick += 1000;
-				// System.out.println("(Game.java:79) => FPS: " + loops);
-				// System.out.println("(Game.java:133) => " + this.getBufferStrategy());
+				System.out.println("(Game.java:83) => FPS: " + loops);
 				loops = 0;
 			}
 		}
-		stop(); 
+		stop();
 
 	}
 
@@ -100,116 +185,29 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	private void render() {
+		BufferStrategy bufferStrategy = this.getBufferStrategy();
 
-		bufferStrategy = this.getBufferStrategy();
-		
 		if(bufferStrategy == null) {
-			createBufferStrategy(3);
+			this.createBufferStrategy(3);
 			return;
 		}
 
 		Graphics g = bufferStrategy.getDrawGraphics();
 
-		if(this.gameState == 0) {
-			System.out.println("(Game.java:105) => Start loading map");
-			
-			drawMap(g);
+		g.setColor(Color.black);
+		g.fillRect(0, 0, width, height);
 
-			System.out.println("(Game.java:109) => Loading map end");
 
-			handler.addObject(new Player(4,4, ID.Player));
-			System.out.println(handler.getObject(0).getStringCasePosition());
-			System.out.println(handler.getObject(0).getId());
-			
-			this.gameState++;
-			this.isDrawed = false;
-		}
-			
+		board.render(g);
+		handler.render(g);
 
-		if(this.isDrawed == false) {
-			
-			System.out.println("(Game.java:131) => Rendering handler");
-			
-			handler.render(g);
-			
-			g.dispose();
+		g.dispose();
 
-			bufferStrategy.show();
-			
-			this.isDrawed = true;
-		}
+		bufferStrategy.show();
 	}
 
-	public void drawMap(Graphics g) {
-				
-		URL mapSpritesheets = getClass().getClassLoader().getResource(_RESSOURCE_DIR_ + "mapSpritesheets.png");
-		URL mainMenu = getClass().getClassLoader().getResource(_RESSOURCE_DIR_ + "mainMenu.png");
-
-		if (mapSpritesheets != null && mainMenu != null) {
-			try {
-
-				Image img = ImageIO.read(mapSpritesheets);
-				Image mainMenuImg = ImageIO.read(mainMenu);
-
-				// Prepare an Image object to be used by drawImage()
-
-				// The img "clip" bounded by (scrX1, scrY2) and (scrX2, srcY2) is scaled and drawn from
-   				// (destX1, destY1) to (destX2, destY2) on the display.
-
-				int i = 0;
-				int block = -2;
-				int srcx1 = 0, srcx2 = 24;
-
-				for(int y = 0; y < this.caseHeight; y++) {
-					
-					block++;
-
-					for(int x = 0; x < this.caseWidth; x++) { 
-						i++;
-
-						if(block >= 1) {
-							block--;
-							srcx1 = 24*block; 
-							srcx2 = 24+(24*block);
-						} else {
-							block++;
-							srcx1 = 24*block; 
-							srcx2 = 24+(24*block);
-						}
-
-						int dstx1 = 8+(24*x),
-						dsty1 = 0+(24*y),
-						dstx2 = 8+(24+(24*x)),
-						dsty2 = 24+(24*y),
-						srcy1 = 0,
-						srcy2 = 24;
-
-			    		/*System.out.println("(Game.java:165) => " +
-			    			"Executed: " + i + "\n" +
-			    			"                   block: " + block + "\n" +
-			    			"                   dstx1: " + dstx1 + "\n" +
-			    			"                   dsty1: " + dsty1 + "\n" +
-			    			"                   dstx2: " + dstx2 + "\n" +
-			    			"                   dsty2: " + dsty2 + "\n" +
-			    			"                   srcx1: " + srcx1 + "\n" +
-			    			"                   srcy1: " + srcy1 + "\n" +
-			    			"                   srcx2: " + srcx2 + "\n" +
-			    			"                   srcy2: " + srcy2
-			    		);*/
-
-						g.drawImage(img, dstx1, dsty1, dstx2, dsty2, srcx1, srcy1, srcx2, srcy2, this);
-					}
-				}
-
-				// g.drawImage(mainMenuImg, 8, 0, this.width, this.height, this);
- 
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else {
-		   System.err.println("(Game.java:129) => Couldn't find file: " + mapSpritesheets + " or " + mainMenu);
-		}
-	    
+	public static void main(String[] args) {
+		new Game();
 	}
-	
+
 }
